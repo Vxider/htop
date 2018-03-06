@@ -277,21 +277,22 @@ void ScreenManager_run(ScreenManager* this, Panel** lastFocus, int* lastKey) {
          continue;
       }
       case KEY_LEFT:
-      case KEY_CTRL('B'):
-         if (this->panelCount < 2) {
-            goto defaultHandler;
-         }
-         if (!this->allowFocusChange)
+      case 'h':
+          if (this->panelCount < 2)
+            {
+                  goto defaultHandler;
+            }
+            if (!this->allowFocusChange)
+                  break;
+      tryLeft:
+            if (focus > 0)
+                  focus--;
+            panelFocus = setCurrentPanel((Panel *)Vector_get(this->panels, focus));
+            if (Panel_size(panelFocus) == 0 && focus > 0)
+                  goto tryLeft;
             break;
-         tryLeft:
-         if (focus > 0)
-            focus--;
-         panelFocus = setCurrentPanel((Panel*) Vector_get(this->panels, focus));
-         if (Panel_size(panelFocus) == 0 && focus > 0)
-            goto tryLeft;
-         break;
       case KEY_RIGHT:
-      case KEY_CTRL('F'):
+      case 'l':
       case 9:
          if (this->panelCount < 2) {
             goto defaultHandler;
