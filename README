@@ -81,11 +81,11 @@ See the [INSTALL](/INSTALL) file for detailed instructions.
 
 When compiling from a [release tarball](https://hisham.hm/htop/releases/), run:
 
-    ./configure && make
+    ./configure && make -j
 
 For compiling sources downloaded from the Git repository, run:
 
-    ./autogen.sh && ./configure && make
+    ./autogen.sh && ./configure && make -j
 
 By default `make install` will install into `/usr/local`, for changing
 the path use `./configure --prefix=/some/path`.
